@@ -1,52 +1,63 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, Download } from 'lucide-react'
+import { useResponsive } from '../../hooks/useResponsive'
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [sunHover, setSunHover] = useState(false)
   const [moonHover, setMoonHover] = useState(false)
   const [textEffect, setTextEffect] = useState('normal')
-  const [shootingStar, setShootingStar] = useState({ show: false, type: '' })
+  const [shootingStar, setShootingStar] = useState({ show: false, type: 'sun' })
+  const { isMobile, isTablet, isDesktop } = useResponsive()
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
+      if (!isMobile) {
+        setMousePosition({ x: e.clientX, y: e.clientY })
+      }
     }
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
+  }, [isMobile])
 
   // Función para activar estrella fugaz
   const triggerShootingStar = (type) => {
     setShootingStar({ show: true, type })
     setTimeout(() => {
-      setShootingStar({ show: false, type: '' })
-    }, 2000) // La estrella fugaz dura 2 segundos
+      setShootingStar({ show: false, type })
+    }, 1500)
   }
 
+  // Función para obtener estilos de texto del título
   const getTextStyle = () => {
-    let baseStyle = {
-      fontSize: 'clamp(2rem, 6vw, 4.5rem)', // Reducido para móvil
-      fontWeight: 'bold', 
-      lineHeight: 1.2,
+    const baseStyle = {
+      fontSize: window.innerWidth >= 1024 ? 'clamp(2.5rem, 5vw, 4rem)' : 'clamp(2rem, 6vw, 3rem)',
+      fontWeight: 700,
       marginBottom: '1rem',
-      color: '#E5E7EB',
-      textShadow: '0 0 10px rgba(139, 92, 246, 0.5)',
-      transition: 'all 0.3s ease'
-    }
-
-    // Para pantallas grandes (escritorio), mantenemos el tamaño original
-    if (window.innerWidth >= 1024) {
-      baseStyle.fontSize = 'clamp(2.5rem, 8vw, 4.5rem)'
+      background: 'linear-gradient(135deg, #60A5FA 0%, #C084FC 100%)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      backgroundClip: 'text',
+      transition: 'filter 0.3s ease'
     }
 
     if (textEffect === 'sun') {
-      baseStyle.color = '#FCD34D'
-      baseStyle.textShadow = '0 0 20px rgba(252, 211, 77, 0.8), 0 0 40px rgba(251, 191, 36, 0.6)'
+      return {
+        ...baseStyle,
+        background: 'linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text'
+      }
     } else if (textEffect === 'moon') {
-      baseStyle.color = '#93C5FD'
-      baseStyle.textShadow = '0 0 20px rgba(147, 197, 253, 0.6), 0 0 40px rgba(59, 130, 246, 0.4)'
+      return {
+        ...baseStyle,
+        background: 'linear-gradient(135deg, #93C5FD 0%, #DBEAFE 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text'
+      }
     }
 
     return baseStyle
