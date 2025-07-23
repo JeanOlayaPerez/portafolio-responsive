@@ -150,7 +150,7 @@ const Navbar = () => {
                     onClick={() => scrollToSection(item.id)}
                     className={`flex items-center space-x-3 w-full px-4 py-3 rounded-lg transition-all duration-300 hover:bg-gray-800 ${
                       activeSection === item.id
-                        ? 'text-primary-400 bg-gray-800'
+                        ? 'text-blue-400 bg-gray-800'
                         : 'text-gray-300'
                     }`}
                   >
