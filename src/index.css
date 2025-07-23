@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #111827;
+  color: white;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden; /* Previene scroll horizontal en móvil */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Mejoras para mobile */
+@media (max-width: 1023px) {
+  body {
+    font-size: 14px;
+  }
+  
+  /* Prevenir zoom en inputs en iOS */
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Component styles */
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px; /* Ancho mínimo consistente */
+}
+
+@media (max-width: 767px) {
+  .btn-primary {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.875rem 1.5rem; /* Ligeramente más grande en móvil */
+  }
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid #2563eb;
+  color: #60a5fa;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px; /* Ancho mínimo consistente */
+}
+
+@media (max-width: 767px) {
+  .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.875rem 1.5rem; /* Ligeramente más grande en móvil */
+  }
+}
+
+.btn-secondary:hover {
+  background-color: #2563eb;
+  color: white;
+  transform: scale(1.05);
+}
+
+.glass {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+}
+
+.section-padding {
+  padding: 3rem 1rem; /* Móvil: menos padding vertical */
+}
+
+@media (min-width: 640px) {
+  .section-padding {
+    padding: 4rem 1.5rem; /* Tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 5rem 2rem; /* Desktop - preservamos original */
+  }
+}
+
+.container-custom {
+  max-width: 80rem;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Utilidades responsivas adicionales */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Mejoras para touch devices */
+@media (hover: none) and (pointer: coarse) {
+  /* Estilos específicos para dispositivos táctiles */
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none; /* Deshabilitar hover scale en móvil */
+  }
+  
+  /* Mejorar área de toque */
+  button, 
+  a,
+  [role="button"] {
+    min-height: 44px; /* Tamaño mínimo recomendado para touch */
+    min-width: 44px;
+  }
+}
+
+/* Scroll suave para iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Ocultar scrollbar pero mantener funcionalidad */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 3px;
+}
+
+/* Animaciones reducidas para usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
