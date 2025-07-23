@@ -25,6 +25,13 @@ build/
 *.swo
 *~
 
+# Visual Studio files
+.vs/
+*.vsidx
+*.db
+*.wsuo
+*.sqlite
+
 # OS generated files
 .DS_Store
 .DS_Store?
