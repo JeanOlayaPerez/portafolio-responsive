@@ -6,12 +6,29 @@ const SectionNavigator = ({ children, sectionIds }) => {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [scrollDirection, setScrollDirection] = useState(null)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [isDesktop, setIsDesktop] = useState(false)
   
   const sectionRef = useRef(null)
   const scrollContainerRef = useRef(null)
   const transitionTimeoutRef = useRef(null)
 
-  // Configuración de la transición rápida
+  // Detectar si es desktop
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024)
+    }
+    
+    checkIsDesktop()
+    window.addEventListener('resize', checkIsDesktop)
+    return () => window.removeEventListener('resize', checkIsDesktop)
+  }, [])
+
+  // Si NO es desktop, renderizar contenido normal sin navegación especial
+  if (!isDesktop) {
+    return <div style={{ minHeight: '100vh' }}>{children}</div>
+  }
+
+  // Configuración de la transición rápida (solo para desktop)
   const transitionDuration = 0.3 // 300ms - súper rápido
 
   // Mecanismo de recuperación para isTransitioning bloqueado

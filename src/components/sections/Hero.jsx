@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, Download } from 'lucide-react'
 import { useResponsive } from '../../hooks/useResponsive'
+import HeroMobile from './HeroMobile'
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -10,6 +11,11 @@ const Hero = () => {
   const [textEffect, setTextEffect] = useState('normal')
   const [shootingStar, setShootingStar] = useState({ show: false, type: 'sun' })
   const { isMobile, isTablet, isDesktop } = useResponsive()
+
+  // Si es móvil, usar la versión simplificada
+  if (isMobile) {
+    return <HeroMobile />
+  }
 
   useEffect(() => {
     const handleMouseMove = (e) => {

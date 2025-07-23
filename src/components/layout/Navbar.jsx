@@ -47,13 +47,24 @@ const Navbar = () => {
   }, [])
 
   const scrollToSection = (sectionId) => {
-    // Scroll normal sin SectionNavigator
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      })
+    // Para desktop: usar SectionNavigator
+    if (window.innerWidth >= 1024) {
+      const sectionIndex = navItems.findIndex(item => item.id === sectionId)
+      if (sectionIndex !== -1) {
+        const event = new CustomEvent('navigateToSection', { 
+          detail: { sectionIndex, sectionId } 
+        })
+        window.dispatchEvent(event)
+      }
+    } else {
+      // Para mobile: scroll normal
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
     }
     setIsOpen(false)
   }

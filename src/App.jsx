@@ -89,17 +89,17 @@ function App() {
             style={{ minHeight: '100vh', backgroundColor: '#111827' }}
           >
             <Navbar />
-            <div style={{ minHeight: '100vh' }}>
+            <SectionNavigator sectionIds={sectionIds}>
               {sections}
-            </div>
+            </SectionNavigator>
             
-            {/* Indicador de navegación móvil - TEMPORALMENTE DESHABILITADO */}
-            {/* {isMobile && (
+            {/* Indicador de navegación móvil */}
+            {isMobile && (
               <MobileNavIndicator 
                 activeSection={activeSection} 
                 navItems={navItems}
               />
-            )} */}
+            )}
           </motion.div>
         )}
       </AnimatePresence>
