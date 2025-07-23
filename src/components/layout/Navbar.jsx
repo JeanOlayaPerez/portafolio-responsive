@@ -47,14 +47,13 @@ const Navbar = () => {
   }, [])
 
   const scrollToSection = (sectionId) => {
-    // En lugar de scroll, disparar evento personalizado para el SectionNavigator
-    const sectionIndex = navItems.findIndex(item => item.id === sectionId)
-    if (sectionIndex !== -1) {
-      // Disparar evento personalizado
-      const event = new CustomEvent('navigateToSection', { 
-        detail: { sectionIndex, sectionId } 
+    // Scroll normal sin SectionNavigator
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
       })
-      window.dispatchEvent(event)
     }
     setIsOpen(false)
   }
