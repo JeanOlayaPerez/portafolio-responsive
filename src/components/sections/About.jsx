@@ -91,157 +91,51 @@ const About = () => {
               opacity: Math.random() > 0.3 ? 1 : 0.3,
             }}
             animate={{
-              opacity: buildingHover ? [0.7, 1, 0.7] : [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 2 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 1,
-            }}
-          />
-        ))}
-      </motion.div>
-    )
 
-    // Edificios adicionales de Santiago
-    const buildings = [
-      { right: '25%', height: '35%', width: '8px' },
-      { right: '30%', height: '28%', width: '6px' },
-      { right: '35%', height: '32%', width: '7px' },
-      { right: '42%', height: '25%', width: '5px' },
-      { right: '8%', height: '30%', width: '7px' },
-      { left: '15%', height: '26%', width: '6px' },
-      { left: '22%', height: '22%', width: '5px' },
-    ]
+              import React from 'react'
+              import { Code, Coffee, Users, Award, Lightbulb, Heart } from 'lucide-react'
 
-    buildings.forEach((building, index) => {
-      sunsetElements.push(
-        <motion.div
-          key={`building-${index}`}
-          style={{
-            position: 'absolute',
-            ...(building.right ? { right: building.right } : { left: building.left }),
-            bottom: '0',
-            width: building.width,
-            height: building.height,
-            background: 'linear-gradient(to top, rgba(30, 30, 30, 0.9) 0%, rgba(50, 50, 50, 0.8) 80%, rgba(70, 70, 70, 0.7) 100%)',
-            zIndex: 2,
-          }}
-          animate={{
-            opacity: [0.8, 0.9, 0.8],
-          }}
-          transition={{
-            duration: 6 + index,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          {/* Ventanas para cada edificio */}
-          {[...Array(Math.floor(Math.random() * 8) + 4)].map((_, i) => (
-            <motion.div
-              key={`window-${index}-${i}`}
-              style={{
-                position: 'absolute',
-                width: '1px',
-                height: '2px',
-                backgroundColor: '#FFEAA7',
-                left: `${20 + (i % 2) * 30}%`,
-                top: `${30 + Math.floor(i / 2) * 12}%`,
-                opacity: Math.random() > 0.4 ? 0.8 : 0.2,
-              }}
-              animate={{
-                opacity: [0.2, 0.8, 0.2],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </motion.div>
-      )
-    })
-
-    // Nubes realistas con múltiples capas
-    const cloudConfigs = [
-      { left: '10%', top: '15%', size: '200px', delay: 0 },
-      { right: '20%', top: '10%', size: '250px', delay: 2 },
-      { left: '60%', top: '20%', size: '180px', delay: 4 },
-      { right: '50%', top: '25%', size: '220px', delay: 1 },
-      { left: '35%', top: '8%', size: '160px', delay: 3 },
-    ]
-
-    cloudConfigs.forEach((cloud, index) => {
-      sunsetElements.push(
-        <motion.div
-          key={`cloud-${index}`}
-          style={{
-            position: 'absolute',
-            ...(cloud.left ? { left: cloud.left } : { right: cloud.right }),
-            top: cloud.top,
-            width: cloud.size,
-            height: `${parseInt(cloud.size) * 0.6}px`,
-            background: 'radial-gradient(ellipse at 30% 50%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 192, 203, 0.6) 40%, rgba(255, 165, 0, 0.4) 70%, transparent 100%)',
-            borderRadius: '50px',
-            filter: 'blur(1px)',
-            zIndex: 4,
-          }}
-          animate={{
-            x: [0, 30, 0],
-            scale: [1, 1.05, 1],
-            opacity: [0.6, 0.8, 0.6],
-          }}
-          transition={{
-            duration: 15 + index * 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: cloud.delay,
-          }}
-        />
-      )
-    })
-
-    // Pájaros volando en formación
-    const birdFormations = [
-      { startX: '-10%', y: '25%', direction: 1, delay: 0, count: 7 },
-      { startX: '110%', y: '30%', direction: -1, delay: 8, count: 5 },
-      { startX: '-5%', y: '35%', direction: 1, delay: 15, count: 6 },
-    ]
-
-    birdFormations.forEach((formation, formationIndex) => {
-      for (let i = 0; i < formation.count; i++) {
-        sunsetElements.push(
-          <motion.div
-            key={`bird-${formationIndex}-${i}`}
-            style={{
-              position: 'absolute',
-              left: formation.startX,
-              top: formation.y,
-              width: '8px',
-              height: '6px',
-              zIndex: 5,
-            }}
-            animate={{
-              x: formation.direction > 0 ? ['0vw', '110vw'] : ['0vw', '-20vw'],
-              y: [0, Math.sin(i * 0.5) * 20, 0],
-            }}
-            transition={{
-              x: {
-                duration: 25 + Math.random() * 10,
-                repeat: Infinity,
-                delay: formation.delay + i * 0.3,
-                repeatDelay: 20,
-                ease: "linear",
-              },
-              y: {
-                duration: 3 + Math.random(),
-                repeat: Infinity,
-                ease: "easeInOut",
+              const About = () => {
+                return (
+                  <section id="about" className="section-padding container-custom flex flex-col items-center justify-center text-center gap-6 md:gap-10">
+                    <h2 className="gradient-text text-2xl font-bold mb-2">Sobre mí</h2>
+                    <p className="text-gray-300 text-base max-w-xs mx-auto mb-4">
+                      Soy desarrollador web apasionado por crear experiencias digitales modernas y funcionales. Me especializo en React, Node.js y diseño centrado en el usuario.
+                    </p>
+                    <div className="flex flex-wrap justify-center items-center gap-4 mb-4">
+                      <div className="flex flex-col items-center">
+                        <Code className="w-8 h-8 text-blue-400 mb-1" />
+                        <span className="text-xs text-gray-400">Frontend</span>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <Coffee className="w-8 h-8 text-yellow-400 mb-1" />
+                        <span className="text-xs text-gray-400">Café lover</span>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <Users className="w-8 h-8 text-green-400 mb-1" />
+                        <span className="text-xs text-gray-400">Trabajo en equipo</span>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <Award className="w-8 h-8 text-purple-400 mb-1" />
+                        <span className="text-xs text-gray-400">Premios</span>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <Lightbulb className="w-8 h-8 text-yellow-300 mb-1" />
+                        <span className="text-xs text-gray-400">Creativo</span>
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <Heart className="w-8 h-8 text-pink-400 mb-1" />
+                        <span className="text-xs text-gray-400">Apasionado</span>
+                      </div>
+                    </div>
+                    <p className="text-primary-400 text-sm italic mb-2">
+                      "La tecnología es el puente entre ideas y realidad."
+                    </p>
+                  </section>
+                )
               }
-            }}
-          >
-            {/* Forma de pájaro simple pero efectiva */}
+
+              export default About
             <div style={{
               position: 'relative',
               width: '100%',
