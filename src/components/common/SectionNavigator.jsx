@@ -282,7 +282,7 @@ const SectionNavigator = ({ children, sectionIds }) => {
   if (shouldRenderNavigator) {
     return (
       <div style={{ 
-        height: '100vh', 
+        height: 'calc(var(--vh, 1vh) * 100)', 
         width: '100vw',
         overflow: 'hidden', 
         position: 'relative',
@@ -308,8 +308,8 @@ const SectionNavigator = ({ children, sectionIds }) => {
             {/* Contenedor de scroll interno */}
             <div
               ref={scrollContainerRef}
-              style={{
-                height: '100vh',
+                style={{
+                height: 'calc(var(--vh, 1vh) * 100)',
                 width: '100%',
                 overflowY: 'auto',
                 overflowX: 'hidden',
@@ -321,7 +321,7 @@ const SectionNavigator = ({ children, sectionIds }) => {
               }}
               className="custom-scrollbar"
             >
-              <div style={{ minHeight: 'calc(100vh - 80px)' }}>
+              <div style={{ minHeight: 'calc((var(--vh, 1vh) * 100) - 80px)' }}>
                 {children[currentSectionIndex]}
               </div>
             </div>
@@ -336,7 +336,7 @@ const SectionNavigator = ({ children, sectionIds }) => {
           transform: 'translateY(-50%)',
           zIndex: 1000,
           width: '4px',
-          height: '60vh',
+          height: 'calc(var(--vh, 1vh) * 60)',
           background: 'rgba(255, 255, 255, 0.1)',
           borderRadius: '2px',
           overflow: 'hidden'
@@ -466,7 +466,8 @@ const SectionNavigator = ({ children, sectionIds }) => {
     )
   }
   // Renderizado para mobile (sin navegación especial)
-  return <div style={{ minHeight: '100vh' }}>{children}</div>;
+  // Usar la variable CSS --vh para evitar problemas con la barra de dirección en móviles
+  return <div style={{ minHeight: 'calc(var(--vh, 1vh) * 100)' }}>{children}</div>;
 }
 
 export default SectionNavigator

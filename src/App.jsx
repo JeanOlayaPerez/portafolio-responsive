@@ -28,6 +28,21 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Corrige comportamiento de 100vh en móviles: setear --vh en root
+  useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)
+    }
+
+    setVh()
+    window.addEventListener('resize', setVh)
+    window.addEventListener('orientationchange', setVh)
+    return () => {
+      window.removeEventListener('resize', setVh)
+      window.removeEventListener('orientationchange', setVh)
+    }
+  }, [])
+
   // Escuchar cambios de sección para el indicador móvil
   useEffect(() => {
     const handleSectionChange = () => {
@@ -76,7 +91,7 @@ function App() {
   ]
 
   return (
-    <div className="App" style={{ minHeight: '100vh', backgroundColor: '#111827' }}>
+  <div className="App" style={{ minHeight: 'calc(var(--vh, 1vh) * 100)', backgroundColor: '#111827' }}>
       <AnimatePresence mode="wait">
         {loading ? (
           <LoadingScreen key="loading" />
@@ -86,7 +101,7 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            style={{ minHeight: '100vh', backgroundColor: '#111827' }}
+            style={{ minHeight: 'calc(var(--vh, 1vh) * 100)', backgroundColor: '#111827' }}
           >
             <Navbar />
             <SectionNavigator sectionIds={sectionIds}>
