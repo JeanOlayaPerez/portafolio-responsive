@@ -457,7 +457,7 @@ const SectionNavigator = ({ children, sectionIds }) => {
         </AnimatePresence>
 
         {/* CSS para ocultar scrollbar */}
-        <style jsx>{`
+  <style>{`
           .custom-scrollbar::-webkit-scrollbar {
             display: none;
           }

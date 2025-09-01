@@ -5,12 +5,13 @@ import { useResponsive } from '../../hooks/useResponsive'
 import HeroMobile from './HeroMobile'
 
 const Hero = () => {
+  // Hooks deben ir siempre antes de cualquier return condicional
+  const { isMobile, isTablet, isDesktop } = useResponsive()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [sunHover, setSunHover] = useState(false)
   const [moonHover, setMoonHover] = useState(false)
   const [textEffect, setTextEffect] = useState('normal')
   const [shootingStar, setShootingStar] = useState({ show: false, type: 'sun' })
-  const { isMobile, isTablet, isDesktop } = useResponsive()
 
   // Si es móvil, usar la versión simplificada
   if (isMobile) {
