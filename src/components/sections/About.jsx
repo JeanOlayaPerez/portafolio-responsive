@@ -1,3 +1,47 @@
+import React from 'react'
+import { Code, Coffee, Users, Award, Lightbulb, Heart } from 'lucide-react'
+
+const About = () => {
+  return (
+    <section id="about" className="section-padding container-custom flex flex-col items-center justify-center text-center gap-6">
+      <h2 className="gradient-text text-2xl font-bold mb-2">Sobre mí</h2>
+      <p className="text-gray-300 text-base max-w-xs mx-auto mb-4">
+        Soy desarrollador web apasionado por crear experiencias digitales modernas y funcionales. Me especializo en React, Node.js y diseño centrado en el usuario.
+      </p>
+      <div className="flex flex-wrap justify-center items-center gap-4 mb-4">
+        <div className="flex flex-col items-center">
+          <Code className="w-8 h-8 text-blue-400 mb-1" />
+          <span className="text-xs text-gray-400">Frontend</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <Coffee className="w-8 h-8 text-yellow-400 mb-1" />
+          <span className="text-xs text-gray-400">Café lover</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <Users className="w-8 h-8 text-green-400 mb-1" />
+          <span className="text-xs text-gray-400">Trabajo en equipo</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <Award className="w-8 h-8 text-purple-400 mb-1" />
+          <span className="text-xs text-gray-400">Premios</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <Lightbulb className="w-8 h-8 text-yellow-300 mb-1" />
+          <span className="text-xs text-gray-400">Creativo</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <Heart className="w-8 h-8 text-pink-400 mb-1" />
+          <span className="text-xs text-gray-400">Apasionado</span>
+        </div>
+      </div>
+      <p className="text-primary-400 text-sm italic mb-2">
+        "La tecnología es el puente entre ideas y realidad."
+      </p>
+    </section>
+  )
+}
+
+export default About
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
@@ -39,72 +83,46 @@ const About = () => {
           clipPath: 'polygon(0% 100%, 0% 60%, 8% 45%, 15% 55%, 25% 40%, 35% 50%, 45% 35%, 55% 45%, 65% 30%, 75% 40%, 85% 25%, 95% 35%, 100% 30%, 100% 100%)',
           zIndex: 1,
         }}
-        animate={{
-          opacity: [0.8, 0.9, 0.8],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-    )
+      return (
+        <section id="about" className="section-padding container-custom flex flex-col items-center justify-center text-center gap-6">
+          <h2 className="gradient-text text-2xl font-bold mb-2">Sobre mí</h2>
+          <p className="text-gray-300 text-base max-w-xs mx-auto mb-4">
+            Soy desarrollador web apasionado por crear experiencias digitales modernas y funcionales. Me especializo en React, Node.js y diseño centrado en el usuario.
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-4 mb-4">
+            <div className="flex flex-col items-center">
+              <Code className="w-8 h-8 text-blue-400 mb-1" />
+              <span className="text-xs text-gray-400">Frontend</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Coffee className="w-8 h-8 text-yellow-400 mb-1" />
+              <span className="text-xs text-gray-400">Café lover</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Users className="w-8 h-8 text-green-400 mb-1" />
+              <span className="text-xs text-gray-400">Trabajo en equipo</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Award className="w-8 h-8 text-purple-400 mb-1" />
+              <span className="text-xs text-gray-400">Premios</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Lightbulb className="w-8 h-8 text-yellow-300 mb-1" />
+              <span className="text-xs text-gray-400">Creativo</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Heart className="w-8 h-8 text-pink-400 mb-1" />
+              <span className="text-xs text-gray-400">Apasionado</span>
+            </div>
+          </div>
+          <p className="text-primary-400 text-sm italic mb-2">
+            "La tecnología es el puente entre ideas y realidad."
+          </p>
+        </section>
+      )
+    }
 
-    // Costanera Center (rascacielos principal)
-    sunsetElements.push(
-      <motion.div
-        key="costanera-center"
-        style={{
-          position: 'absolute',
-          right: '15%',
-          bottom: '0',
-          width: '12px',
-          height: '50%',
-          background: 'linear-gradient(to top, rgba(40, 40, 40, 0.95) 0%, rgba(60, 60, 60, 0.9) 70%, rgba(80, 80, 80, 0.8) 100%)',
-          clipPath: 'polygon(20% 100%, 20% 15%, 35% 0%, 65% 0%, 80% 15%, 80% 100%)',
-          zIndex: 3,
-          cursor: 'pointer',
-        }}
-        whileHover={{ 
-          scale: 1.05,
-          filter: 'brightness(1.2)',
-        }}
-        onHoverStart={() => {
-          setBuildingHover(true)
-        }}
-        onHoverEnd={() => {
-          setBuildingHover(false)
-        }}
-        onClick={() => triggerLightRays('building')}
-      >
-        {/* Ventanas del edificio */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={`window-${i}`}
-            style={{
-              position: 'absolute',
-              width: '1.5px',
-              height: '3px',
-              backgroundColor: buildingHover ? '#FFD700' : '#FFEAA7',
-              left: `${30 + (i % 3) * 15}%`,
-              top: `${20 + Math.floor(i / 3) * 8}%`,
-              opacity: Math.random() > 0.3 ? 1 : 0.3,
-            }}
-            animate={{
-
-              import React from 'react'
-              import { Code, Coffee, Users, Award, Lightbulb, Heart } from 'lucide-react'
-
-              const About = () => {
-                return (
-                  <section id="about" className="section-padding container-custom flex flex-col items-center justify-center text-center gap-6 md:gap-10">
-                    <h2 className="gradient-text text-2xl font-bold mb-2">Sobre mí</h2>
-                    <p className="text-gray-300 text-base max-w-xs mx-auto mb-4">
-                      Soy desarrollador web apasionado por crear experiencias digitales modernas y funcionales. Me especializo en React, Node.js y diseño centrado en el usuario.
-                    </p>
-                    <div className="flex flex-wrap justify-center items-center gap-4 mb-4">
-                      <div className="flex flex-col items-center">
-                        <Code className="w-8 h-8 text-blue-400 mb-1" />
+    export default About
                         <span className="text-xs text-gray-400">Frontend</span>
                       </div>
                       <div className="flex flex-col items-center">
